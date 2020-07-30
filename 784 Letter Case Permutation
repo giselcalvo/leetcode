@@ -1,0 +1,29 @@
+/**
+ * @param {string} S
+ * @return {string[]}
+ */
+var letterCasePermutation = function(S) {
+    let results = [];
+    generatePermutations(S, 0, '', results);
+    return results
+};
+
+var generatePermutations = (input, idx, slate, results) => {
+
+    //base case
+    if( idx === input.length ) {
+        results.push(slate);
+        return;
+    }
+    
+    //recursive step
+    if( parseInt(input[idx]) == input[idx]) {
+        generatePermutations(input, idx+1 , slate + input[idx], results);
+    } else  {
+        generatePermutations(input, idx+1 , slate + input[idx].toLowerCase(), results);
+        generatePermutations(input, idx+1 , slate + input[idx].toUpperCase(), results);
+    }
+   
+   
+    return results;
+}
